@@ -8,7 +8,7 @@
      * depth of the comment
      */
     "toc_char"     : "-",
-
+    "level_bullets": ["","+","","-","*","~"]
     /*
      * The character you use to mark a comment for the TOC.
      * // > Means level 1
