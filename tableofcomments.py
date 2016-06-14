@@ -228,7 +228,8 @@ class TableOfComments:
         matches = view.find_all(pattern)
         results = []
         toc_title = get_setting('toc_title', str)
-
+        level_bullets = get_setting('level_bullets', list)
+        
         for match in matches:
             bits = view.lines(match)  # go through each line
             for region in bits:
@@ -257,6 +258,7 @@ class TableOfComments:
 
                     # append the heading text, remove trailing comment chars
                     text = line_match.group(3).strip(comment_chars+' ')
+                    label += level_bullets[level%len(level_bullets)]+" "
                     label += text
 
                     # Get the position
@@ -393,6 +395,8 @@ def get_setting(name, typeof=str):
             return setting
         if typeof == bool:
             return setting is True
+        if typeof == list:
+            return setting
         elif typeof == int:
             return int(settings.get(name, 500))
     else:
